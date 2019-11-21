@@ -3,13 +3,11 @@ class SessionsController < ApplicationController
     end
 
     def create
-        # current_user = params[:name]
-        
-        if params[:name] == nil || ""
-            redirect_to "/"
-        else
-            session[:name] = params[:name]
-            redirect_to "/welcome"
+        if current_user.present?
+            current_user = params[:name]
+        else 
+            current_user == nil
+            redirect_to "/sessions/new"
         end
     end
 end
