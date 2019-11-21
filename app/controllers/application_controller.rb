@@ -7,5 +7,8 @@ class ApplicationController < ActionController::Base
   end
 
   def hello
+    if !current_user
+      redirect_to '/login'
+    end
   end
 end
